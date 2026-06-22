@@ -9,7 +9,7 @@ import (
 )
 
 type HTTPServer struct {
-	Address string
+	Address string `yaml:"address"  env-required:"true"`
 }
 
 type Config struct {
@@ -21,6 +21,7 @@ type Config struct {
 func Load() *Config {
 	var configPath string
 	configPath = os.Getenv("CONFIG_PATH")
+
 	if configPath == "" {
 		flags := flag.String("config", "", "path tp the configuration file")
 		flag.Parse()
